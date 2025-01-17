@@ -1,5 +1,6 @@
 // src/app/api/users/route.js
 import pool from '../../../lib/database';
+import mysql from  'mysql2/promise';
 
 export async function GET() {
   try {

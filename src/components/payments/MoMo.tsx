@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 
-import styles from "../../styles/Payment.module.css";
-
 interface CreditCardProps {
   amount: number;
   description: string;

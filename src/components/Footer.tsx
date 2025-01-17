@@ -1,4 +1,3 @@
-// filepath: /C:/laragon/www/nextjs/apimomo/src/components/Footer.tsx
 import React from 'react';
 import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 
