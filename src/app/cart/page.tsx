@@ -4,40 +4,59 @@ import React, { use, useEffect, useState } from "react";
 
 import Head from "next/head";
 import { useRouter } from "next/navigation";
-import {CartItem} from "@/lib/definitions";
+import {CartItem} from "../../lib/definitions";
 import Header from "../../components/Header";
-import Footer from "@/components/Footer";
+import Footer from "../../components/Footer";
 
 export default function Cart() {
   const [cart, setCart] = useState<CartItem[]>([]);
-  const totalJSON = localStorage.getItem("totalPayment");
-  const totalNumber = totalJSON ? JSON.parse(totalJSON) : 0;
-  const [total, setTotal] = useState(totalNumber);
+  const [total, setTotal] = useState<number>(() => {
+    if (typeof window !== "undefined") {
+      const totalJSON = localStorage.getItem("totalPayment");
+      return totalJSON ? JSON.parse(totalJSON) : 0;
+    }
+    return 0;
+  });
+  const [checkoutID, setCheckoutID] = useState("");
   const router = useRouter();
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const checkoutIDJSON = localStorage.getItem("checkoutID");
+      const checkoutIDString = checkoutIDJSON ? JSON.parse(checkoutIDJSON) : "";
+      setCheckoutID(checkoutIDString);
+    }
+  }, []);
 
   // Getting the Cart
   useEffect(() => {
-    const cartItemsJSON = localStorage.getItem("cartItems");
-    const cartItems: CartItem[] = cartItemsJSON ? JSON.parse(cartItemsJSON) : [];
-    setCart(cartItems);
+    if (typeof window !== "undefined") {
+      const cartItemsJSON = localStorage.getItem("cartItems");
+      const cartItems: CartItem[] = cartItemsJSON ? JSON.parse(cartItemsJSON) : [];
+      setCart(cartItems);
+    }
   }, []);
 
   // Updating Total Price
   useEffect(() => {
-    const interval = setInterval(() => {
-      const cartItemsJSON = localStorage.getItem("cartItems");
-      const cartItems: CartItem[] = cartItemsJSON ? JSON.parse(cartItemsJSON) : [];
-      setCart(cartItems);
-      const newTotal = cartItems.reduce((acc, item) => acc + item.quantity * item.product.price, 0);
-      setTotal(newTotal);
-    }, 2000);
-    return () => clearInterval(interval); // Cleanup interval on component unmount
+    if (typeof window !== "undefined") {
+      const interval = setInterval(() => {
+        const cartItemsJSON = localStorage.getItem("cartItems");
+        const cartItems: CartItem[] = cartItemsJSON ? JSON.parse(cartItemsJSON) : [];
+        setCart(cartItems);
+        const newTotal = cartItems.reduce((acc, item) => acc + item.quantity * item.product.price, 0);
+        setTotal(newTotal);
+      }, 2000);
+      return () => clearInterval(interval); // Cleanup interval on component unmount
+    }
   }, [cart]);
 
   const ProceedPayment = (total: number) => {
-    localStorage.setItem("totalPayment", JSON.stringify(total));
-    localStorage.setItem("checkoutID", JSON.stringify(`${Date.now()}-Guide`));
-    router.push("/payment");
+    if (typeof window !== "undefined") {
+      localStorage.setItem("totalPayment", JSON.stringify(total));
+      localStorage.setItem("checkoutID", JSON.stringify(`${Date.now()}-Guide`));
+      router.push("/payment");
+    }
   };
 
   return (

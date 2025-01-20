@@ -9,12 +9,12 @@ const users: User[] = [
     // Ajoutez d'autres utilisateurs ici
   ];
 export default function Home() {
-  var [users, setUsers] = useState<User[]>([]);
-  users =  [
-    { id: 1, name: 'John Doe', email: '', password: '' },
-    { id: 2, name: 'John Doe', email: '', password: '' },
-    // Ajoutez d'autres utilisateurs ici
-  ];
+  // var [users, setUsers] = useState<User[]>([]);
+  // var users =  [
+  //   { id: 1, name: 'John Doe', email: '', password: '' },
+  //   { id: 2, name: 'John Doe', email: '', password: '' },
+  //   // Ajoutez d'autres utilisateurs ici
+  // ];
 
 
   // useEffect(() => {

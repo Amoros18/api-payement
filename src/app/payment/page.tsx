@@ -1,10 +1,8 @@
 'use client'
 
 import React, { useEffect, useState } from "react";
-
 import Head from "next/head";
 import { useRouter } from "next/navigation";
-
 import Header from "../../components/Header";
 import CreditCard from "../../components/payments/CreditCard";
 import OM from "../../components/payments/OM";
@@ -13,11 +11,27 @@ import Footer from "../../components/Footer";
 
 export default function Cart() {
   const [paymentOption, setPaymentOption] = useState(0);
-  const totalJSON = localStorage.getItem("totalPayment");
-  const totalNumber = totalJSON ? JSON.parse(totalJSON) : 0;
-  const [total, setTotal] = useState(totalNumber);
+  const [total, setTotal] = useState<number>(() => {
+    if (typeof window !== "undefined") {
+      const totalJSON = localStorage.getItem("totalPayment");
+      return totalJSON ? JSON.parse(totalJSON) : 0;
+    }
+    return 0;
+  });
   const [checkoutID, setCheckoutID] = useState("");
   const router = useRouter();
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const totalJSON = localStorage.getItem("totalPayment");
+      const totalNumber = totalJSON ? JSON.parse(totalJSON) : 0;
+      setTotal(totalNumber);
+
+      const checkoutIDJSON = localStorage.getItem("checkoutID");
+      const checkoutIDString = checkoutIDJSON ? JSON.parse(checkoutIDJSON) : "";
+      setCheckoutID(checkoutIDString);
+    }
+  }, []);
 
   const displayPaymentForm = (paymentOption: number) => {
     const description = checkoutID;
@@ -31,15 +45,15 @@ export default function Cart() {
   };
 
   // Getting the Checkout Information
-  useEffect(() => {
-    const totalJSON = localStorage.getItem("totalPayment");
-    const totalNumber = !!totalJSON ? JSON.parse(totalJSON) : 0;
-    setTotal(totalNumber);
+  // useEffect(() => {
+  //   const totalJSON = localStorage.getItem("totalPayment");
+  //   const totalNumber = !!totalJSON ? JSON.parse(totalJSON) : 0;
+  //   setTotal(totalNumber);
 
-    const checkoutIDJSON = localStorage.getItem("checkoutID");
-    const checkoutIDString = !!checkoutIDJSON ? JSON.parse(checkoutIDJSON) : "";
-    setCheckoutID(checkoutIDString);
-  }, []);
+  //   const checkoutIDJSON = localStorage.getItem("checkoutID");
+  //   const checkoutIDString = !!checkoutIDJSON ? JSON.parse(checkoutIDJSON) : "";
+  //   setCheckoutID(checkoutIDString);
+  // }, []);
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
