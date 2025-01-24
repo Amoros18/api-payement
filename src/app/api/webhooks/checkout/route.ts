@@ -15,9 +15,13 @@ export const config = {
 
 export async function POST(request: NextRequest) {
   // const buf = Buffer.from(await request.text());
-  const req = request as unknown as IncomingMessage;
-  const buf = await buffer(req);
+  const text = await request.text();
+  const buf = Buffer.from(text);
   const sig = request.headers.get('stripe-signature');
+
+  // const req = request as unknown as IncomingMessage;
+  // const buf = await buffer(req);
+  // const sig = request.headers.get('stripe-signature');
 
   let event;
 
