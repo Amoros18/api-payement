@@ -11,7 +11,9 @@
   "dependencies": {
     "@stripe/react-stripe-js": "^3.1.1",
     "@stripe/stripe-js": "^5.5.0",
+    "@types/micro": "^7.3.7",
     "axios": "^1.7.9",
+    "micro-cors": "^0.1.1",
     "mysql2": "^3.12.0",
     "next": "15.1.4",
     "pg": "^8.13.1",
@@ -24,6 +26,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@types/micro-cors": "^0.1.5",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
