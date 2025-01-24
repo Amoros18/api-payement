@@ -50,7 +50,7 @@ const STATUS_CONTENT_MAP: Record<PaymentStatus, { text: string; iconColor: strin
 
 export default function CompletePage() {
   const stripe = useStripe();
-  const [status, setStatus] = useState<PaymentStatus>("default");
+  const [status, setStatus] = useState<PaymentStatus>("processing");
 
   // const [status, setStatus] = useState("default");
   const [intentId, setIntentId] = useState<string | null>(null);
