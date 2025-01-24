@@ -83,10 +83,11 @@ export async function POST(req: NextRequest) {
 
   let event: Stripe.Event;
   const body = await req.text(); // Stripe nécessite la requête brute (texte)
+  const buf = Buffer.from(body);
 
   try {
     // const body = await req.text(); // Stripe nécessite la requête brute (texte)
-    event = stripe.webhooks.constructEvent(body, sig, endpointSecret);
+    event = stripe.webhooks.constructEvent(buf, sig, endpointSecret);
   } catch (err: unknown) {
     if (err instanceof Error) {
       console.error('Webhook signature verification failed:', err.message);
