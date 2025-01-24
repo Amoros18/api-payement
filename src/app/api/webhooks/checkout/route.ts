@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { buffer } from 'micro';
+import { IncomingMessage } from 'http';
 import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
@@ -13,7 +14,9 @@ export const config = {
 };
 
 export async function POST(request: NextRequest) {
-  const buf = Buffer.from(await request.text());
+  // const buf = Buffer.from(await request.text());
+  const req = request as unknown as IncomingMessage;
+  const buf = await buffer(req);
   const sig = request.headers.get('stripe-signature');
 
   let event;
