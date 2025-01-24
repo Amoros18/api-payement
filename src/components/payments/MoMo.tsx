@@ -20,7 +20,7 @@ const MoMo: React.FC<CreditCardProps> = ({ amount, description }) => {
 
   return (
     <div className="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-4">Orange Money Payment</h2>
+      <h2 className="text-2xl font-bold mb-4">Mobile Money Payment</h2>
       <form onSubmit={onSubmit}>
         <div className="mb-4">
           <label className="block text-gray-700">Customer Name</label>
@@ -56,7 +56,7 @@ const MoMo: React.FC<CreditCardProps> = ({ amount, description }) => {
           type="submit"
           className="w-full bg-blue-500 text-white px-4 py-2 rounded-lg transition duration-300 ease-in-out hover:bg-blue-700"
         >
-          Pay ${amount.toFixed(2)}
+          Pay {amount.toFixed(2)} F
         </button>
       </form>
       {payProcess && (

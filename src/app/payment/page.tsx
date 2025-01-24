@@ -44,17 +44,6 @@ export default function Cart() {
     }
   };
 
-  // Getting the Checkout Information
-  // useEffect(() => {
-  //   const totalJSON = localStorage.getItem("totalPayment");
-  //   const totalNumber = !!totalJSON ? JSON.parse(totalJSON) : 0;
-  //   setTotal(totalNumber);
-
-  //   const checkoutIDJSON = localStorage.getItem("checkoutID");
-  //   const checkoutIDString = !!checkoutIDJSON ? JSON.parse(checkoutIDJSON) : "";
-  //   setCheckoutID(checkoutIDString);
-  // }, []);
-
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
       <Head>
@@ -90,28 +79,28 @@ export default function Cart() {
             <div className="w-full max-w-xs bg-white rounded-lg shadow-md p-4 m-2">
               <input
                 type="radio"
-                id="gcash"
+                id="MoMo"
                 name="paymentOption"
                 value="1"
                 checked={paymentOption === 1}
                 onChange={() => setPaymentOption(1)}
                 className="mr-2"
               />
-              <label htmlFor="gcash" className="cursor-pointer">
+              <label htmlFor="MoMo" className="cursor-pointer">
                 Mobile Money
               </label>
             </div>
             <div className="w-full max-w-xs bg-white rounded-lg shadow-md p-4 m-2">
               <input
                 type="radio"
-                id="grabPay"
+                id="OM"
                 name="paymentOption"
                 value="2"
                 checked={paymentOption === 2}
                 onChange={() => setPaymentOption(2)}
                 className="mr-2"
               />
-              <label htmlFor="grabPay" className="cursor-pointer">
+              <label htmlFor="OM" className="cursor-pointer">
                 Orange Money
               </label>
             </div>

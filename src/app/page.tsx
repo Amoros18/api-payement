@@ -11,8 +11,6 @@ import Footer from "@/components/Footer";
 import plainT from "../assets/plainT.png";
 import { Product } from "../lib/definitions";
 
-// Product Placeholder
-// Normally this is an API Call to pull data from db
 const product = {
   id: "1",
   name: "Plain White T-Shirt",
@@ -26,9 +24,6 @@ export default function Home() {
   const [quantity, setQuantity] = useState(0);
   const router = useRouter();
 
-  // Add to Cart Placeholder
-  // Normally this is an API Call to push data to the db and updating the cart
-  // We simulate this by saving to local storage
   const AddToCart = (product: Product, quantity : number) => {
     if (quantity > 0 && quantity <= product.stock) {
       const cartItems = [];
@@ -63,7 +58,7 @@ export default function Home() {
             <div className="w-1/2 pl-6">
               <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
               <p className="text-gray-700 mb-4">{product.description}</p>
-              <p className="text-2xl font-semibold mb-4">${product.price}</p>
+              <p className="text-2xl font-semibold mb-4">{product.price} F</p>
               <div className="flex items-center mb-4">
                 <label className="mr-2">Quantity:</label>
                 <input

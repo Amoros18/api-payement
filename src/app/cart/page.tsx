@@ -47,7 +47,7 @@ export default function Cart() {
         const newTotal = cartItems.reduce((acc, item) => acc + item.quantity * item.product.price, 0);
         setTotal(newTotal);
       }, 2000);
-      return () => clearInterval(interval); // Cleanup interval on component unmount
+      return () => clearInterval(interval);
     }
   }, [cart]);
 
@@ -87,13 +87,13 @@ export default function Cart() {
               <li key={index} className="flex justify-between items-center mb-2">
                 <p className="w-1/4">{item.product.name}</p>
                 <p className="w-1/4">{item.quantity}</p>
-                <p className="w-1/4">${item.product.price.toFixed(2)}</p>
-                <p className="w-1/4">${(item.quantity * item.product.price).toFixed(2)}</p>
+                <p className="w-1/4">{item.product.price.toFixed(2)} F</p>
+                <p className="w-1/4">{(item.quantity * item.product.price).toFixed(2)} F</p>
               </li>
             ))}
           </ul>
           <div className="flex justify-between items-center mt-4">
-            <p className="text-xl font-bold">Total: <span>${total.toFixed(2)}</span></p>
+            <p className="text-xl font-bold">Total: <span>{total.toFixed(2)} F</span></p>
             <button
               onClick={() => ProceedPayment(total)}
               className="bg-blue-500 text-white px-4 py-2 rounded-lg transition duration-300 ease-in-out hover:bg-blue-700"

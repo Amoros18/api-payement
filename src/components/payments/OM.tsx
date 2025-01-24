@@ -56,7 +56,7 @@ const OM: React.FC<CreditCardProps> = ({ amount, description }) => {
           type="submit"
           className="w-full bg-blue-500 text-white px-4 py-2 rounded-lg transition duration-300 ease-in-out hover:bg-blue-700"
         >
-          Pay ${amount.toFixed(2)}
+          Pay {amount.toFixed(2)} F
         </button>
       </form>
       {payProcess && (
